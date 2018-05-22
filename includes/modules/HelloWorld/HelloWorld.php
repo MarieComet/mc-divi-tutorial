@@ -14,7 +14,8 @@ class MCDT_HelloWorld extends ET_Builder_Module {
 	public function init() {
 		$this->name = esc_html__( 'Hello World', 'mcdt-mc-divi-tutorial' );
 		$this->icon_path =  plugin_dir_path( __FILE__ ) . 'sun.svg';
-		
+		$this->main_css_element = '%%order_class%%';
+
 	}
 
 	public function get_fields() {
