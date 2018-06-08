@@ -50,9 +50,6 @@ class MCDT_HelloWorld extends ET_Builder_Module {
 		// Classe CSS principale
 		$this->main_css_element = '%%order_class%%';
 
-		// ajouter des onglets
-		$this->main_tabs = $this->get_main_tabs();
-
 		// définir les sections et les sous sections (toggles) par onglet
 		$this->settings_modal_toggles  = array(
 			// Natif
@@ -77,7 +74,7 @@ class MCDT_HelloWorld extends ET_Builder_Module {
 	public function get_fields() {
 		return array(
 			'title' => array(
-				'label'           => esc_html__( 'Titre', 'mc_divi_custom_modules' ),
+				'label'           => esc_html__( 'Titre', 'mcdt-mc-divi-tutorial' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Content entered here will appear as title.', 'mcdt-mc-divi-tutorial' ),
@@ -95,12 +92,27 @@ class MCDT_HelloWorld extends ET_Builder_Module {
 		);
 	}
 
-	/*
-	* Affichage du contenu
-	*/
-	public function render( $attrs, $content = null, $render_slug ) {
-		return sprintf( '<h1>%1$s</h1>', $this->props['content'] );
+/*
+* Affichage du contenu
+*/
+public function render( $attrs, $content = null, $render_slug ) {
+
+	$title = $this->props['title'];
+	$content = $this->props['content'];
+
+	if ( '' !== $title ) {
+		$title = sprintf( '<h1>%1$s</h1>', $title );
 	}
+
+	$output = sprintf(
+		'%1$s
+		%2$s',
+		$title,
+		$content
+	);
+
+	return $output;
+}
 }
 
 new MCDT_HelloWorld;
