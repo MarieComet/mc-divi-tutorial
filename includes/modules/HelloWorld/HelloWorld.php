@@ -91,28 +91,79 @@ class MCDT_HelloWorld extends ET_Builder_Module {
 			),
 		);
 	}
+	function get_advanced_fields_config() {
+		$advanced_fields = array(
+			// paramètres spécifiques au fonts (Onglet "style")
+			'fonts'  => array(
+				// notre champs titre
+				'title' => array(
+					'label'    => esc_html__( 'Titre', 'mc_divi_custom_modules' ),
+					// sélecteur CSS
+					'css'      => array(
+						'main' => "{$this->main_css_element} h1",
+						'font' => "{$this->main_css_element} h1",
+						'color' => "{$this->main_css_element} h1",
+						'plugin_main' => "{$this->main_css_element} h1, {$this->main_css_element} h1",
+						'text_align' => "{$this->main_css_element} h1",
+					),
+					// option d'alignement
+					'use_alignment' => true,
+					// désactiver l'option d'ombre portée
+					'hide_text_shadow' => true,
+				),
+				// notre champs contenu
+				'content'   => array(
+					'label'    => esc_html__( 'Contenu', 'mc_divi_custom_modules' ),
+					'css'      => array(
+						'main'        => "{$this->main_css_element} p",
+						'color'       => "{$this->main_css_element}, {$this->main_css_element} *",
+						'line_height' => "{$this->main_css_element} p",
+						'plugin_main' => "{$this->main_css_element}, %%order_class%% p",
+					),
+					// désactiver l'option d'ombre portée
+					'hide_text_shadow' => true,
+				),
+			),
+			// désactiver la première partie de style du texte
+			'text' => false,
+			// autoriser uniquement les background de couleur
+			'background' => array(
+				'use_background_color_gradient' => false, // default
+				'use_background_image'          => false, // default
+				'use_background_video'          => false, // default
+			),
+			// désactiver l'ombre porter du module
+			'box_shadow' => false,
+			// désactiver les filtres
+			'filters'			=> false,
+			// désactiver les animations
+			'animation'			=> false,
+		);
 
-/*
-* Affichage du contenu
-*/
-public function render( $attrs, $content = null, $render_slug ) {
-
-	$title = $this->props['title'];
-	$content = $this->props['content'];
-
-	if ( '' !== $title ) {
-		$title = sprintf( '<h1>%1$s</h1>', $title );
+		return $advanced_fields;
 	}
 
-	$output = sprintf(
-		'%1$s
-		%2$s',
-		$title,
-		$content
-	);
+	/*
+	* Affichage du contenu
+	*/
+	public function render( $attrs, $content = null, $render_slug ) {
 
-	return $output;
-}
+		$title = $this->props['title'];
+		$content = $this->props['content'];
+
+		if ( '' !== $title ) {
+			$title = sprintf( '<h1>%1$s</h1>', $title );
+		}
+
+		$output = sprintf(
+			'%1$s
+			%2$s',
+			$title,
+			$content
+		);
+
+		return $output;
+	}
 }
 
 new MCDT_HelloWorld;
