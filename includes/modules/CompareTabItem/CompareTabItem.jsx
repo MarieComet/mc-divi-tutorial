@@ -9,20 +9,27 @@ class CompareTabItem extends Component {
 
   static slug = 'mcdt_compare_tab_item';
 
-  /*componentWillMount() {
-    this.setState( { itemShowOption: 'off' } )
-  }*/
-
   render() {
 
-    console.log(this);
+    const getHTML = content => {
+        return {__html: content }
+    }
 
-    return (
-      <div>
-        <h2 className="dicm-title">{this.props.title}</h2>
-        <div className="dicm-content">{this.props.content()}</div>
-      </div>
-    );
+    return(
+     <Fragment>
+      { this.props.content.map( elem => {
+
+        return (
+          <div className="et_pb_module_inner">
+          <h2 className="dicm-title-sub-title"> { elem.props.attrs.title }</h2>
+          { ( this.props.itemShowOption && this.props.itemShowOption === 'on' ) && (
+            <div className="dicm-content-subcontent" dangerouslySetInnerHTML={ getHTML( elem.props.content ) }></div>
+          ) }
+          </div>
+        )
+      } ) }
+      </Fragment>
+    )
   }
 }
 

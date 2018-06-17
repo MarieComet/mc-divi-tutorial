@@ -68,12 +68,13 @@ class MCDT_CompareTab extends ET_Builder_Module {
 			),
 			'show_option' => array(
 				'label'           	=> esc_html__( 'Show option', 'plugin_domain' ),
-				'type'            	=> 'yes_no_button',
+				'type'            	=> 'select',
 				'option_category' 	=> 'configuration',
 				'options'         	=> array(
-					'off'  	=> esc_html__( 'Off', 'plugin_domain' ),
-					'on' 	=> esc_html__( 'On', 'plugin_domain' ),
+					'on'  	=> esc_html__( 'On', 'plugin_domain' ),
+					'off' 	=> esc_html__( 'Off', 'plugin_domain' ),
 				),
+				'default' => 'on',
 				'toggle_slug'     => 'main_content',
 				'tab_slug'		  => 'general',
 			),
